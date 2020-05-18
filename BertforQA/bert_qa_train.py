@@ -263,9 +263,9 @@ def train_iters(train_path, val_path):
 		model = model.cuda(args.device)
 	model.train()
 #	 model.bert.embeddings.requires_grad = False
-	train_loss_list, val_loss_list = [], []
+	train_loss_list, val_loss_list,  min_val_loss = [], [], 100000000
 	for i in range(args.epoch):
-		index, total, total_SE_loss, total_ans_loss, total_loss, val_loss, min_val_loss = 0, 0, 0, 0, 0, 0, 100000
+		index, total, total_SE_loss, total_ans_loss, total_loss, val_loss, = 0, 0, 0, 0, 0, 0,
 		optimizer, scheduler = get_optimizer(model, len(trainloader), args.epoch, args.lr)
 		start_time = time.time()
 		with Timer():
